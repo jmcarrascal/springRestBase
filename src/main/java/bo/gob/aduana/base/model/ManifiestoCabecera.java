@@ -1,7 +1,7 @@
 package bo.gob.aduana.base.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,8 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import bo.gob.aduana.base.util.DateUtil;
 
 @Entity
 @Table(name = "manifiesto_cabecera")
@@ -30,16 +35,22 @@ public class ManifiestoCabecera implements Serializable {
     private Long id;
 
     @NotNull
-    private Date fechaPartida;
+    private Timestamp fechaPartida;
 
     @OneToOne
 	@NotNull
     private Placa placa;
 
+    @Transient
+    private String formatFechaPartida;
+    
+    @Transient
+    private String formatFechaLlegada;
+
     @NotNull
     private String numeroViaje;
 
-    private Date fechaLlegada;
+    private Timestamp fechaLlegada;
 
     @ManyToOne
 	@JoinColumn(name="aduanaPartida")
@@ -59,7 +70,8 @@ public class ManifiestoCabecera implements Serializable {
     @DecimalMin("0.00000001")
     private Double cantidadBultos;
 
-    @NotNull
+   
+    @JsonIgnore
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "manifiestoCabecera")
     private List<ManifiestoItem> manifiestoItem;
 
@@ -71,14 +83,7 @@ public class ManifiestoCabecera implements Serializable {
         this.id = id;
     }
 
-    public Date getFechaPartida() {
-        return fechaPartida;
-    }
-
-    public void setFechaPartida(Date fechaPartida) {
-        this.fechaPartida = fechaPartida;
-    }
-
+   
    
 
     public String getNumeroViaje() {
@@ -89,13 +94,6 @@ public class ManifiestoCabecera implements Serializable {
         this.numeroViaje = numeroViaje;
     }
 
-    public Date getFechaLlegada() {
-        return fechaLlegada;
-    }
-
-    public void setFechaLlegada(Date fechaLlegada) {
-        this.fechaLlegada = fechaLlegada;
-    }
 
    
     public Double getPeso() {
@@ -187,4 +185,45 @@ public class ManifiestoCabecera implements Serializable {
 	public void setAduanaDestino(Aduana aduanaDestino) {
 		this.aduanaDestino = aduanaDestino;
 	}
+
+	public Timestamp getFechaPartida() {
+		return fechaPartida;
+	}
+
+	public void setFechaPartida(Timestamp fechaPartida) {
+		this.fechaPartida = fechaPartida;
+	}
+
+	public Timestamp getFechaLlegada() {
+		return fechaLlegada;
+	}
+
+	public void setFechaLlegada(Timestamp fechaLlegada) {
+		
+		this.fechaLlegada = fechaLlegada;
+	}
+
+	public String getFormatFechaPartida() {
+		formatFechaPartida = DateUtil.getFormattedDate(fechaPartida);
+		return formatFechaPartida;
+	}
+
+	public void setFormatFechaPartida(String formatFechaPartida) {
+		fechaPartida = DateUtil.composeDate(formatFechaPartida);
+		setFechaPartida(fechaPartida);
+		this.formatFechaPartida = formatFechaPartida;
+	}
+
+	public String getFormatFechaLlegada() {
+		formatFechaLlegada = DateUtil.getFormattedDate(fechaLlegada);
+		return formatFechaLlegada;
+	}
+
+	public void setFormatFechaLlegada(String formatFechaLlegada) {
+		fechaLlegada = DateUtil.composeDate(formatFechaLlegada);
+		setFechaLlegada(fechaLlegada);
+		this.formatFechaLlegada = formatFechaLlegada;
+	}
+	
+	
 }
