@@ -1,40 +1,55 @@
 package bo.gob.aduana.base.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "manifiesto_cabecera")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ManifiestoCabecera implements Serializable {
 
-    @Id
+   
+
+	@Id
     @GeneratedValue
     private Long id;
 
     @NotNull
     private Date fechaPartida;
 
-    @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "placas")
-    private List<Placa> placa;
+    @OneToOne
+	@NotNull
+    private Placa placa;
 
     @NotNull
     private String numeroViaje;
 
     private Date fechaLlegada;
 
-    @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "aduanasPartida")
-    private List<Aduana> aduanaPartida;
+    @ManyToOne
+	@JoinColumn(name="aduanaPartida")
+	@NotNull
+    private Aduana aduanaPartida;
 
-    @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "aduanasLlegada")
-    private List<Aduana> aduanaDestino;
+    @ManyToOne
+	@JoinColumn(name="aduanaDestino")
+	@NotNull
+    private Aduana aduanaDestino;
 
     @NotNull
     @DecimalMin("0.00000001")
@@ -45,8 +60,8 @@ public class ManifiestoCabecera implements Serializable {
     private Double cantidadBultos;
 
     @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "items")
-    private List<ManifiestoCabecera> manifiestoCabecera;
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "manifiestoCabecera")
+    private List<ManifiestoItem> manifiestoItem;
 
     public Long getId() {
         return id;
@@ -64,13 +79,7 @@ public class ManifiestoCabecera implements Serializable {
         this.fechaPartida = fechaPartida;
     }
 
-    public List<Placa> getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(List<Placa> placa) {
-        this.placa = placa;
-    }
+   
 
     public String getNumeroViaje() {
         return numeroViaje;
@@ -88,22 +97,7 @@ public class ManifiestoCabecera implements Serializable {
         this.fechaLlegada = fechaLlegada;
     }
 
-    public List<Aduana> getAduanaPartida() {
-        return aduanaPartida;
-    }
-
-    public void setAduanaPartida(List<Aduana> aduanaPartida) {
-        this.aduanaPartida = aduanaPartida;
-    }
-
-    public List<Aduana> getAduanaDestino() {
-        return aduanaDestino;
-    }
-
-    public void setAduanaDestino(List<Aduana> aduanaDestino) {
-        this.aduanaDestino = aduanaDestino;
-    }
-
+   
     public Double getPeso() {
         return peso;
     }
@@ -120,16 +114,17 @@ public class ManifiestoCabecera implements Serializable {
         this.cantidadBultos = cantidadBultos;
     }
 
-    public List<ManifiestoCabecera> getManifiestoCabecera() {
-        return manifiestoCabecera;
-    }
+  
 
-    public void setManifiestoCabecera(
-            List<ManifiestoCabecera> manifiestoCabecera) {
-        this.manifiestoCabecera = manifiestoCabecera;
-    }
+    public List<ManifiestoItem> getManifiestoItem() {
+		return manifiestoItem;
+	}
 
-    @Override
+	public void setManifiestoItem(List<ManifiestoItem> manifiestoItem) {
+		this.manifiestoItem = manifiestoItem;
+	}
+
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -168,4 +163,28 @@ public class ManifiestoCabecera implements Serializable {
             return false;
         return true;
     }
+    
+    public Placa getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(Placa placa) {
+		this.placa = placa;
+	}
+
+	public Aduana getAduanaPartida() {
+		return aduanaPartida;
+	}
+
+	public void setAduanaPartida(Aduana aduanaPartida) {
+		this.aduanaPartida = aduanaPartida;
+	}
+
+	public Aduana getAduanaDestino() {
+		return aduanaDestino;
+	}
+
+	public void setAduanaDestino(Aduana aduanaDestino) {
+		this.aduanaDestino = aduanaDestino;
+	}
 }

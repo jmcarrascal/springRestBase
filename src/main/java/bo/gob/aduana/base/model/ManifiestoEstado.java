@@ -8,6 +8,11 @@ import java.util.Date;
 @Table(name = "manifiesto_estado")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ManifiestoEstado {
+	
+	@ManyToOne
+	@JoinColumn(name="manifiestoItem")
+	@NotNull
+	private ManifiestoItem manifiestoItem; 
 
     @Id
     @GeneratedValue
@@ -53,4 +58,14 @@ public class ManifiestoEstado {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+	public ManifiestoItem getManifiestoItem() {
+		return manifiestoItem;
+	}
+
+	public void setManifiestoItem(ManifiestoItem manifiestoItem) {
+		this.manifiestoItem = manifiestoItem;
+	}
+    
 }
+

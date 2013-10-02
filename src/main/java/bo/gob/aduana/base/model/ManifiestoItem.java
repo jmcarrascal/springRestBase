@@ -10,18 +10,25 @@ import java.util.List;
 @Table(name = "manifiesto_item")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ManifiestoItem implements Serializable {
+	
+	@ManyToOne
+	@JoinColumn(name="manifiestoCabecera")
+	@NotNull
+	private ManifiestoCabecera manifiestoCabecera; 
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "aduanasPartidas")
-    private List<Aduana> aduanaPartida;
+    @ManyToOne
+	@JoinColumn(name="aduanaPartida")
+	@NotNull
+    private Aduana aduanaPartida;
 
-    @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "aduanasLlegadas")
-    private List<Aduana> aduanaDestino;
+    @ManyToOne
+	@JoinColumn(name="aduanaDestino")
+	@NotNull
+    private Aduana aduanaDestino;
 
     @NotNull
     @DecimalMin("0.00000001")
@@ -31,22 +38,23 @@ public class ManifiestoItem implements Serializable {
     @DecimalMin("0.00000001")
     private Double cantidadBultos;
 
-    @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "embalaje")
-    private List<Embalaje> embalaje;
+    @ManyToOne
+   	@JoinColumn(name="embalaje")
+   	@NotNull
+    private Embalaje embalaje;
 
     private String descripcion;
 
     @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "pais")
-    private List<Pais> paisOrigen;
+    @OneToOne
+    private Pais paisOrigen;
 
     @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "consignatario")
-    private List<Consignatario> consignatario;
+    @OneToOne
+    private Consignatario consignatario;
 
     @NotNull
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "estados")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "manifiestoItem")
     private List<ManifiestoEstado> manifiestoEstado;
 
     public Long getId() {
@@ -57,22 +65,10 @@ public class ManifiestoItem implements Serializable {
         this.id = id;
     }
 
-    public List<Aduana> getAduanaPartida() {
-        return aduanaPartida;
-    }
+   
+    
 
-    public void setAduanaPartida(List<Aduana> aduanaPartida) {
-        this.aduanaPartida = aduanaPartida;
-    }
-
-    public List<Aduana> getAduanaDestino() {
-        return aduanaDestino;
-    }
-
-    public void setAduanaDestino(List<Aduana> aduanaDestino) {
-        this.aduanaDestino = aduanaDestino;
-    }
-
+   
     public Double getPeso() {
         return peso;
     }
@@ -89,13 +85,7 @@ public class ManifiestoItem implements Serializable {
         this.cantidadBultos = cantidadBultos;
     }
 
-    public List<Embalaje> getEmbalaje() {
-        return embalaje;
-    }
-
-    public void setEmbalaje(List<Embalaje> embalaje) {
-        this.embalaje = embalaje;
-    }
+  
 
     public String getDescripcion() {
         return descripcion;
@@ -105,20 +95,61 @@ public class ManifiestoItem implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public List<Pais> getPaisOrigen() {
-        return paisOrigen;
-    }
+	public ManifiestoCabecera getManifiestoCabecera() {
+		return manifiestoCabecera;
+	}
 
-    public void setPaisOrigen(List<Pais> paisOrigen) {
-        this.paisOrigen = paisOrigen;
-    }
+	public void setManifiestoCabecera(ManifiestoCabecera manifiestoCabecera) {
+		this.manifiestoCabecera = manifiestoCabecera;
+	}
 
-    public List<Consignatario> getConsignatario() {
-        return consignatario;
-    }
+	public Aduana getAduanaPartida() {
+		return aduanaPartida;
+	}
 
-    public void setConsignatario(List<Consignatario> consignatario) {
-        this.consignatario = consignatario;
-    }
+	public void setAduanaPartida(Aduana aduanaPartida) {
+		this.aduanaPartida = aduanaPartida;
+	}
 
+	public Aduana getAduanaDestino() {
+		return aduanaDestino;
+	}
+
+	public void setAduanaDestino(Aduana aduanaDestino) {
+		this.aduanaDestino = aduanaDestino;
+	}
+
+	public Embalaje getEmbalaje() {
+		return embalaje;
+	}
+
+	public void setEmbalaje(Embalaje embalaje) {
+		this.embalaje = embalaje;
+	}
+
+	public Pais getPaisOrigen() {
+		return paisOrigen;
+	}
+
+	public void setPaisOrigen(Pais paisOrigen) {
+		this.paisOrigen = paisOrigen;
+	}
+
+	public Consignatario getConsignatario() {
+		return consignatario;
+	}
+
+	public void setConsignatario(Consignatario consignatario) {
+		this.consignatario = consignatario;
+	}
+
+	public List<ManifiestoEstado> getManifiestoEstado() {
+		return manifiestoEstado;
+	}
+
+	public void setManifiestoEstado(List<ManifiestoEstado> manifiestoEstado) {
+		this.manifiestoEstado = manifiestoEstado;
+	}
+
+   
 }

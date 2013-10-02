@@ -54,7 +54,14 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>bo.gob.aduana.base.model.Parametrizacion</value>
-				<value>bo.gob.aduana.base.model.Usuario</value>						
+				<value>bo.gob.aduana.base.model.Usuario</value>
+				<value>bo.gob.aduana.base.model.Aduana</value>
+				<value>bo.gob.aduana.base.model.Consignatario</value>
+				<value>bo.gob.aduana.base.model.Embalaje</value>
+				<value>bo.gob.aduana.base.model.ManifiestoCabecera</value>
+				<value>bo.gob.aduana.base.model.ManifiestoItem</value>
+				<value>bo.gob.aduana.base.model.ManifiestoEstado</value>
+				<value>bo.gob.aduana.base.model.Pais</value>										
 			</list>
 		</property>	
 		
