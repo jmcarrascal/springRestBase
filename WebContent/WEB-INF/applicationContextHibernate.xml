@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+    
+<!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--		<property name="driverClass">-->
+<!--			<value>com.mysql.jdbc.Driver</value>-->
+<!--		</property>-->
+<!--		<property name="jdbcUrl">-->
+<!--			<value>jdbc:mysql://localhost:3306/signserver</value>-->
+<!--		</property>-->
+<!--		<property name="minPoolSize">-->
+<!--			<value>1</value>-->
+<!--		</property>-->
+<!--		<property name="maxPoolSize">-->
+<!--			<value>20</value>-->
+<!--		</property>-->
+<!--		<property name="maxStatements">-->
+<!--			<value>150</value>-->
+<!--		</property>-->
+<!--		<property name="maxIdleTime">-->
+<!--			<value>30</value>-->
+<!--		</property>-->
+<!--		<property name="initialPoolSize">-->
+<!--			<value>1</value>-->
+<!--		</property>-->
+<!--		<property name="user">-->
+<!--			<value>root</value>-->
+<!--		</property>-->
+<!--		<property name="password">-->
+<!--			<value>coinse</value>-->
+<!--		</property>-->
+<!--	</bean>-->
+
+<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--		<property name="driverClass">-->
+<!--			<value>org.postgresql.Driver</value>-->
+<!--		</property>-->
+<!--		<property name="jdbcUrl">-->
+<!--			<value>jdbc:postgresql://10.1.5.145:5432/produccion</value>-->
+<!--		</property>-->
+<!--		<property name="minPoolSize">-->
+<!--			<value>1</value>-->
+<!--		</property>-->
+<!--		<property name="maxPoolSize">-->
+<!--			<value>20</value>-->
+<!--		</property>-->
+<!--		<property name="maxStatements">-->
+<!--			<value>150</value>-->
+<!--		</property>-->
+<!--		<property name="maxIdleTime">-->
+<!--			<value>30</value>-->
+<!--		</property>-->
+<!--		<property name="initialPoolSize">-->
+<!--			<value>1</value>-->
+<!--		</property>-->
+<!--		<property name="user">-->
+<!--			<value>sueldos</value>-->
+<!--		</property>-->
+<!--		<property name="password">-->
+<!--			<value>sueldos</value>-->
+<!--		</property>-->
+<!--	</bean>-->
+
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass">
+			<value>org.postgresql.Driver</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>jdbc:postgresql://localhost:5432/jee6qs</value>
+		</property>
+		<property name="minPoolSize">
+			<value>1</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>20</value>
+		</property>
+		<property name="maxStatements">
+			<value>150</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>30</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>1</value>
+		</property>
+		<property name="user">
+			<value>postgres</value>
+		</property>
+		<property name="password">
+			<value>postgres</value>
+		</property>
+	</bean>
+
+</beans>
