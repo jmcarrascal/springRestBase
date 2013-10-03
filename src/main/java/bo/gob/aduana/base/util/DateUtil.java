@@ -136,8 +136,18 @@ public class DateUtil {
 		}
 		return month;
 	}
+	
+	public static String getFormattedDate (Date date){
+		if (date != null){
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			return (date==null)?" - ":format.format(new Date(date.getTime()));
+		}else{
+			return null;
+		}
 
-	public static String getFormattedDate(Date date) {
+	}
+
+	public static String getFormattedDateOld(Date date) {
 		int day, month, year;
 		Calendar cal = new GregorianCalendar();
 		String result = "";

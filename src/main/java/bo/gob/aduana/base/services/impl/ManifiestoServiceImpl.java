@@ -53,6 +53,12 @@ public class ManifiestoServiceImpl implements ManifiestoService{
 	public ManifiestoCabecera getManifiestoCAByKey(Long idManifesto) {		
 		return manifiestoCabeceraDAO.getByPrimaryKey(idManifesto);
 	}
+
+	@Override
+	public void editManifiesto(ManifiestoCabecera manifiestoCabecera) {
+		manifiestoCabeceraDAO.update(manifiestoCabecera);
+		
+	}
 	
 	
 	

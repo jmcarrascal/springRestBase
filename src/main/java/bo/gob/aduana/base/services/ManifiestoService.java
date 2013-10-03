@@ -23,5 +23,7 @@ public interface ManifiestoService {
 
 	public ManifiestoCabecera getManifiestoCAByKey(Long idManifesto);
 
+	public void editManifiesto(ManifiestoCabecera manifiestoCabecera);
+
 
 }

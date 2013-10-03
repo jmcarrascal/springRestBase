@@ -46,6 +46,13 @@ public class ManifiestoRESTController {
 	public @ResponseBody void setNewManifiestoCA(ManifiestoCabecera manifiestoCabecera) {		
 		manifiestoService.newManifiesto(manifiestoCabecera);
 	}
+	
+	@RequestMapping(value="/rest/manifiesto/edit", method = RequestMethod.POST)
+	public @ResponseBody void editManifiestoCA(ManifiestoCabecera manifiestoCabecera) {		
+		manifiestoService.editManifiesto(manifiestoCabecera); 
+	}
+
+	
 
 	@RequestMapping(value="/rest/manifiestobykey/{idManifesto}", method = RequestMethod.GET)
 	public @ResponseBody ManifiestoCabecera setNewManifiestoCA(@PathVariable Long idManifesto) {		
