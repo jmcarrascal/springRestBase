@@ -64,7 +64,8 @@
 				<value>bo.gob.aduana.base.model.ManifiestoCabecera</value>
 				<value>bo.gob.aduana.base.model.ManifiestoItem</value>
 				<value>bo.gob.aduana.base.model.ManifiestoEstado</value>
-				<value>bo.gob.aduana.base.model.Pais</value>										
+				<value>bo.gob.aduana.base.model.Pais</value>
+				<value>bo.gob.aduana.base.model.Placa</value>										
 			</list>
 		</property>	
 		

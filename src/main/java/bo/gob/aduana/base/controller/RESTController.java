@@ -38,5 +38,10 @@ public class RESTController {
 	public @ResponseBody JsonResult validateUser(Usuario usuario) {		
 		 return usuarioService.validateUser(usuario);
 	}
+	
+	@RequestMapping(value="/rest/loginOut", method = RequestMethod.GET)
+	public @ResponseBody String loginOut() {		
+		 return "out";
+	}
 		
 }

@@ -21,5 +21,7 @@ public interface ManifiestoService {
 
 	public List<Placa> getPlacaAll();
 
+	public ManifiestoCabecera getManifiestoCAByKey(Long idManifesto);
+
 
 }

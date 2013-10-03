@@ -48,6 +48,11 @@ public class ManifiestoServiceImpl implements ManifiestoService{
 	public List<Placa> getPlacaAll() {		
 		return placaDAO.getAll();
 	}
+
+	@Override
+	public ManifiestoCabecera getManifiestoCAByKey(Long idManifesto) {		
+		return manifiestoCabeceraDAO.getByPrimaryKey(idManifesto);
+	}
 	
 	
 	
